@@ -1,0 +1,50 @@
+﻿@model IEnumerable<POOI_T2_SALAZAR.Models.Alumno>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Nuevo Alumno", "Agregar", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <tr>
+        <th>DNI</th>
+        <th>Nombres</th>
+        <th>Apellidos</th>
+        <th>Carrera</th>
+        <th>Ciclo</th>
+        <th>Opciones</th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.dni)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombres)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.apellidos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.carrera)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ciclo)
+        </td>
+        <td>
+            @Html.ActionLink("Actualizar", "Actualizar", new { dni = item.dni }, new { @class = "btn btn-warning btn-sm" }) |
+            
+            @Html.ActionLink("Detalles", "Detalles", new { dni = item.dni }, new { @class = "btn btn-info btn-sm" }) |
+            
+            @Html.ActionLink("Eliminar", "Eliminar", new { dni = item.dni }, new { @class = "btn btn-danger btn-sm", onclick = "return confirm('SE ELIMINARÁ AL ALUMNO');" })
+        </td>
+    </tr>
+}
+
+</table>
